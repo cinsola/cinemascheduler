@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="CinemaScheduler.Components.FilePickerComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CinemaScheduler.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" Margin="0, 0, 0, 5">
+            <ListView x:Name="pickedFilesView" ItemsSource="{Binding PickedFiles}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" FocusManager.FocusedElement="{Binding ElementName=pickedFilesView}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*" />
+                                <ColumnDefinition Width="Auto"  />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Column="0">
+                                <TextBlock Text="{Binding FileName}" FontWeight="Bold" />
+                                <TextBlock Foreground="Red" Text="importazione non riuscita. file non riconosciuto" Visibility="{Binding IsWrongFile, Converter={StaticResource visibilityConverter}}" />
+                                <TextBlock Foreground="Orange" Text="conversione richiesta" Visibility="{Binding IsConversionRequired, Converter={StaticResource visibilityConverter}}" />
+                                <TextBlock Foreground="DarkGreen" Text="conversione completata" Visibility="{Binding IsConversionOk, Converter={StaticResource visibilityConverter}}" />
+                                <TextBlock Foreground="Silver" Text="conversione in corso" Visibility="{Binding IsPerformingConversion, Converter={StaticResource visibilityConverter}}" />
+                                <StackPanel Orientation="Vertical" Visibility="{Binding IsConversionOk, Converter={StaticResource visibilityConverter}}">
+                                    <TextBlock>
+                                        <TextBlock.Inlines>
+                                            <Run Text="{Binding Actors}" />
+                                            <Run Text=" attori riconosciuti" FontStyle="Italic" />
+                                        </TextBlock.Inlines>
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Inlines>
+                                            <Run Text="{Binding Lines}" />
+                                            <Run Text=" righe riconosciute" FontStyle="Italic" />
+                                        </TextBlock.Inlines>
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Inlines>
+                                            <Run Text="{Binding Rings}" />
+                                            <Run Text=" anelli riconosciuti" FontStyle="Italic" />
+                                        </TextBlock.Inlines>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+								<StackPanel.Resources>
+									<Style TargetType="Button">
+										<Setter Property="Padding" Value="2" />
+										<Setter Property="Margin" Value="2" />
+										<Setter Property="HorizontalAlignment" Value="Right" />
+									</Style>
+								</StackPanel.Resources>
+                                <Button Command="{Binding ImportCommand}" CommandParameter="{Binding}" IsEnabled="{Binding IsPerformingConversion, Converter={StaticResource inverseConverter}}" VerticalAlignment="Top">importa nel progetto</Button>
+                                <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" IsEnabled="{Binding IsPerformingConversion, Converter={StaticResource inverseConverter}}" VerticalAlignment="Top">rimuovi</Button>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Click="AddFile" Padding="5">Aggiungi file</Button>
+    </Grid>
+</UserControl>

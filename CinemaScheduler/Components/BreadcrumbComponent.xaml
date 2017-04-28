@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="CinemaScheduler.Components.BreadcrumbComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CinemaScheduler.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="0,0,10,0">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+        </Grid.Resources>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Inizio" FontWeight="Bold" />
+            <TextBlock Text="Caricamento dei copioni" />
+            <TextBlock Text="Configurazione parametrica" />
+            <TextBlock Text="Calendario" />
+            <TextBlock Text="Analisi" />
+        </StackPanel>
+    </Grid>
+</UserControl>

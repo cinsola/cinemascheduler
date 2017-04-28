@@ -1,0 +1,41 @@
+﻿<Window x:Class="CinemaScheduler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaScheduler"
+        xmlns:models="clr-namespace:CinemaScheduler.Models"
+        xmlns:components="clr-namespace:CinemaScheduler.Components"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="CinemaScheduler" 
+        Height="600" Width="800" MaxWidth="1000" MinWidth="600" MinHeight="500">
+    <Grid>
+        <Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+		<Menu Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+			<MenuItem Header="_Progetto">
+				<MenuItem Header="_Carica progetto" />
+				<MenuItem Header="_Salva progetto" />
+				<MenuItem Header="_Esci" />
+			</MenuItem>
+			<MenuItem Header="_Configurazione">
+				<MenuItem Header="Presets" />
+				<MenuItem Header="Nuova configurazione" />
+			</MenuItem>
+		</Menu>
+		<Grid Style="{StaticResource BreadcrumbStyle}" Grid.Row="1">
+            <components:BreadcrumbComponent CurrentStep="Start"></components:BreadcrumbComponent>
+        </Grid>
+        <Frame x:Name="framedNavigation" Grid.Row="2" NavigationUIVisibility="Hidden" Style="{StaticResource MainFrameStyle}"></Frame>
+        <Grid Grid.Row="3" Style="{StaticResource BreadcrumbStyle}">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Style="{StaticResource PaddedStackPanelStyle}">
+                <Button Click="GoBack" Style="{StaticResource commandButtonStyle}" Visibility="{Binding BackButtonVisibility}" Margin="0, 0, 5, 0">Indietro</Button>
+                <Button Click="GoNext" Style="{StaticResource commandButtonStyle}" IsEnabled="{Binding IsNextButtonEnabled}">Avanti</Button>
+            </StackPanel>
+        </Grid>
+	</Grid>
+</Window>

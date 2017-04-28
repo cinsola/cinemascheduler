@@ -1,0 +1,57 @@
+﻿<my:ProjectPage x:Class="CinemaScheduler.View.FilePickerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaScheduler.View"
+      xmlns:components="clr-namespace:CinemaScheduler.Components"
+      xmlns:my="clr-namespace:CinemaScheduler.Models"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="FilePicker">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+                <Setter Property="Margin" Value="0, 0, 0, 5" />
+            </Style>
+        </Grid.Resources>
+        <StackPanel  Orientation="Vertical" Style="{StaticResource PaddedStackPanelStyle}">
+            <TextBlock Style="{StaticResource titleStyle}">Scelta dei riepiloghi da analizzare</TextBlock>
+            <TextBlock>
+                <TextBlock.Inlines>
+                    <Run>Scegli i file dei copioni da sottoporre ad analisi. Il programma è in grado di riconoscere</Run>
+                    <Run FontWeight="Bold">solo</Run>
+                    <Run>file per Excel 2016 o versioni successive (incluse le versioni di Office 365).</Run>
+                </TextBlock.Inlines>
+            </TextBlock>
+            <TextBlock>Fornire al software solo file scritti nel formato corretto:</TextBlock>
+            <StackPanel Grid.Row="0" Margin="40, 5, 5, 5">
+                <TextBlock>Inserire un solo episodio per file</TextBlock>
+                <TextBlock>
+                    <TextBlock.Inlines>
+                        <Run>Formattare il file correttamente, seguendo</Run>
+                        <Hyperlink>questo esempio</Hyperlink>
+                        <Run>o facendo riferimento alla</Run>
+                        <Hyperlink>guida di formattazione</Hyperlink>
+                    </TextBlock.Inlines>
+                </TextBlock>
+            </StackPanel>
+            <TextBlock>Per funzionare, il programma ha bisogno che Excel sia correttamente installato su questo Computer</TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Style="{StaticResource PaddedGridPanelStyle}" VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+            </Grid>
+            <TextBlock Grid.Row="0" Style="{StaticResource titleStyle}">Seleziona i file che intendi utilizzare</TextBlock>
+            <components:FilePickerComponent Grid.Row="1" FilesCollectionChanged="CollectionChanged" x:Name="files"></components:FilePickerComponent>
+        </Grid>
+    </Grid>
+</my:ProjectPage>

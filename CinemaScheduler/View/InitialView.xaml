@@ -1,0 +1,30 @@
+﻿<my:ProjectPage x:Class="CinemaScheduler.View.InitialView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaScheduler.View"
+      xmlns:my="clr-namespace:CinemaScheduler.Models"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="InitialView">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock" x:Key="titleStyle">
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+        </Grid.Resources>
+        <StackPanel  Orientation="Vertical" Style="{StaticResource PaddedStackPanelStyle}">
+            <TextBlock Style="{StaticResource titleStyle}">Benvenuto in CinemaScheduler</TextBlock>
+            <TextBlock>Questo programma ti consente di stimare i costi di doppiaggio per i tuoi copioni</TextBlock>
+            <TextBlock>
+                <TextBlock.Inlines>
+                    <Run>Premendo</Run>
+                    <Run FontWeight="Bold">avanti</Run>
+                    <Run>inizi il processo. Iniziamo?</Run>
+                </TextBlock.Inlines>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</my:ProjectPage>
